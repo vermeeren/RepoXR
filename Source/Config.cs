@@ -107,6 +107,12 @@ public class Config(string assemblyPath, ConfigFile file)
     public ConfigEntry<bool> VehicleHeadForward { get; } = file.Create("Input", nameof(VehicleHeadForward), false,
         "When enabled, will make the scooters go forward based on head rotation instead of hand rotation.");
 
+    [ConfigDescriptor(pointerSize: 0.01f, stepSize: 0.01f)]
+    public ConfigEntry<float> ButtonPressPoint { get; } = file.Create("Input", nameof(ButtonPressPoint), 0.5f,
+        new ConfigDescription(
+            "The amount of force required to register an analog value as a button press. The lower the value, the more sensitive analog input becomes.",
+            new AcceptableValueRange<float>(0.01f, 1)));
+
     // Rendering configuration
 
     [ConfigDescriptor(stepSize: 5f, suffix: "%")]
